@@ -138,6 +138,9 @@ public class CustomerRelationServiceImpl extends ServiceImpl<CustomerRelationMap
             //转换CustomerRelationVO为CustomerRelation
             CustomerRelation customerRelation = BeanConv.toBean(customerRelationVO, CustomerRelation.class);
             customerRelation.setCustomerId(String.valueOf(SubjectContent.getUserVO().getId()));
+            if("u".equals(customerRelation.getRelation())){
+                customerRelation.setRelation("0");
+            }
             boolean flag = save(customerRelation);
             if (!flag){
                 throw new RuntimeException("保存客户关系表失败");
